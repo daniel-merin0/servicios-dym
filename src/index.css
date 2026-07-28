@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f5fa;
+  --color-brand-600: #1d4f91; /* Brand Blue */
+  --color-brand-900: #0f2547; /* Dark Brand Blue */
+  
+  /* Sober Industrial Dark Colors */
+  --color-dark-bg: #0b1120;
+  --color-dark-surface: #121c2e;
+  --color-dark-card: rgba(18, 28, 46, 0.6);
+  --color-dark-border: rgba(255, 255, 255, 0.05);
+  --color-dark-border-hover: rgba(255, 255, 255, 0.15);
+  
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-dark-bg);
+  color: #94a3b8; /* slate-400 */
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Glassmorphism utilities - Sober and Professional */
+.glass-panel {
+  background: var(--color-dark-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-dark-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.glass-panel:hover {
+  border-color: var(--color-dark-border-hover);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom class for bone/smoke white logo */
+.logo-smoke {
+  filter: brightness(0) invert(0.88) sepia(0.06);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.logo-smoke:hover {
+  filter: brightness(0) invert(0.96) sepia(0.04);
+  opacity: 1;
+}
+
+/* Strictly ordered container */
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
