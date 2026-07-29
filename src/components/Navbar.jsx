@@ -26,11 +26,25 @@ function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault()
+    setIsOpen(false)
+    
+    setTimeout(() => {
+      const targetId = href.replace('#', '')
+      const element = document.getElementById(targetId) || document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.history.pushState(null, '', href)
+      }
+    }, 120)
+  }
+
   return (
     <nav className={`fixed top-0 left-0 w-full bg-[#0b1120]/95 backdrop-blur-md z-50 border-b border-white/10 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-black/30 py-1' : 'py-2 sm:py-3'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#inicio" className="flex items-center" onClick={closeMenu}>
+        <a href="#inicio" className="flex items-center" onClick={(e) => handleNavClick(e, '#inicio')}>
           <img
             src={logo}
             alt="Servicios Industriales D&M"
@@ -44,6 +58,7 @@ function Navbar() {
             <a
               key={item.name}
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               className="relative text-slate-300 hover:text-white font-semibold py-2 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
             >
               {item.name}
@@ -84,7 +99,7 @@ function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={closeMenu}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="text-slate-200 hover:text-white active:bg-brand-600/20 font-medium py-3 px-3 rounded-lg transition-all duration-150 flex items-center justify-between border-b border-white/5 last:border-0 text-base"
                 >
                   <span>{item.name}</span>
